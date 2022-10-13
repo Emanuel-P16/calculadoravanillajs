@@ -1,0 +1,62 @@
+:root {
+    --background-color: grey;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+p {
+    color: red;
+}
+#calculator {
+    width: 30vw;
+    background-color: var(--background-color);
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+
+
+}
+
+.input {
+    width: 98%;
+    height: 5rem;
+    font-size: 5rem;
+    border-radius: 5%;
+    background-color: var(--background-color);
+    border: none;
+    text-align: right;
+    color: black;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.buttonHub {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.btn {
+    width: 24%;
+    height: 4rem;
+    margin: 2px 2px 2px 2px;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
