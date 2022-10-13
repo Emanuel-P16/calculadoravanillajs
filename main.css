@@ -1,5 +1,5 @@
 :root {
-    --background-color: grey;
+    --background-color: rgb(219, 219, 219);
 }
 
 
@@ -19,18 +19,20 @@ p {
     color: red;
 }
 #calculator {
-    width: 30vw;
+    width: 20rem;
     background-color: var(--background-color);
     display: table;
     margin-right: auto;
     margin-left: auto;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px 4px rgba(0,0,0,0.2);
 
 
 }
 
 .input {
     width: 98%;
-    height: 5rem;
+    height: 10rem;
     font-size: 5rem;
     border-radius: 5%;
     background-color: var(--background-color);
@@ -52,9 +54,12 @@ p {
 }
 
 .btn {
-    width: 24%;
+    width: 4.85rem;
     height: 4rem;
-    margin: 2px 2px 2px 2px;
+    border-radius: 0;
+    border: none;
+    margin: 1px;
+    /* margin: 2px 2px 2px 2px; */
 }
 
 .btn:hover {
