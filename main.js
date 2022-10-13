@@ -1,4 +1,43 @@
+const getinputfield = (key) => {
+    let keyValue = '0'
+    switch (key) {
+        case '1':
+            keyValue = '1'
+            break;
+        case '2':
+            keyValue = '2'
+            break;
+        case '3':
+            keyValue = '3';
+            break;
+        case '4':
+            keyValue = '4';
+            break;
+        case '5':
+            keyValue = '5';
+            break;
+        case '6':
+            keyValue = '6';
+            break;
+        case '7':
+            keyValue = '7';
+            break;
+        case '8':
+            keyValue = '8';
+            break;
+        case '9':
+            keyValue = '9';
+            break;
+        case '0':
+            keyValue = '0';
+            break;
+        default:
+            keyValue = ''
+            break;
 
+    }
+    return keyValue
+}
 
 const getCalculatorValue = (index) => {
     switch (index) {
@@ -93,28 +132,38 @@ const generateButtonHub = (amount) => {
     }
 }
 
+const buttonInput = (e) => {
+    let keyValue = getinputfield(e.key)
+    if(keyValue === ''){
+        return null
+    }
+    let actualValue = document.getElementById('input').value
+    if(actualValue === '0' ){
+        actualValue = ''
+    } 
+    document.getElementById('input').setAttribute('value', actualValue + keyValue)
+    document.getElementById('input').value = actualValue + keyValue
+
+}
+
 const calculator = document.getElementById("calculator")
-document.body.addEventListener('keydown',function(e){
-    console.log(e.key)
-})
+
+document.body.addEventListener('keydown', buttonInput)
 const generalDiv = document.createElement('div')
 
 const divInput = document.createElement('div')
 divInput.classList.add('divInput')
 const input = document.createElement('input')
 input.classList.add('input')
+input.id = 'input'
 input.disabled = true;
-input.type = "number"
-input.value = 0
+input.type = "text"
+input.value = "0"
+input.name = "input"
 divInput.appendChild(input)
 const buttonDiv = document.createElement('div')
 buttonDiv.classList.add('buttonHub')
-// const btn = document.createElement('button')
-// btn.classList.add('btn')
-// btn.innerHTML = "1"
-// buttonDiv.appendChild(btn)
 generateButtonHub(24)
 calculator.appendChild(divInput)
 calculator.appendChild(buttonDiv)
-// calculator.appendChild(generalDiv)
 
