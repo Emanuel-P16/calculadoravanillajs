@@ -1,5 +1,6 @@
 let sizePx = 0
 let lengthParam = 0
+let history = 0
 const getinputfield = (key) => {
     let keyValue = '0'
     switch (key) {
@@ -48,6 +49,11 @@ const getinputfield = (key) => {
         case "Escape":
             keyValue = "escape";
             break;
+        case "Enter":
+            keyValue = "="
+            break;
+        case "=":
+            keyValue = "="
         default:
             keyValue = ''
             break;
@@ -156,24 +162,21 @@ const generateButtonHub = (amount) => {
 
 const buttonInput = (e) => {
     let keyValue = ''
-    if (e.key === undefined){
+    if (e.key === undefined) {
         keyValue = getinputfield(e.target.dataset.btn)
     } else {
         keyValue = getinputfield(e.key)
     }
+
     const input = document.getElementById('input').value.length
-    
-    if (input == 1) {
-        sizePx = 50
-        lengthParam = 7
-    } else if (input === 19 ) {
-        return null
-    }
+
+
 
     let actualValue = document.getElementById('input').value
     if (keyValue === '') {
         return null
     }
+
     if (keyValue === "escape") {
         actualValue = "0"
         keyValue = '0'
@@ -181,17 +184,51 @@ const buttonInput = (e) => {
     if (actualValue === '0') {
         actualValue = ''
     }
+    if (keyValue === '+=') {
+        actualValue = makeOperation(keyValue, actualValue)
+        document.getElementById('input').setAttribute('value', actualValue)
+        document.getElementById('input').value = actualValue
+        return null
+    }
+    console.log(actualValue)
+    if (input == 1) {
+        sizePx = 50
+        lengthParam = 7
+    } else if (input === 19) {
+        return null
+    }
     document.getElementById('input').setAttribute('value', actualValue + keyValue)
     document.getElementById('input').value = actualValue + keyValue
     if (document.getElementById('input').value.length > lengthParam) {
         document.getElementById('input').style.fontSize = sizePx.toString() + "px"
         sizePx = sizePx - 12
-        lengthParam = lengthParam  + 4
+        lengthParam = lengthParam + 4
 
     }
 
 }
 
+const makeOperation = (operator, actualValue) => {
+    /// if you put (+-/*) it should refresh the display 
+    // let re = /[\W\S_]/
+    // console.log(actualValue.replace(re,''))
+    if (history === 0) {
+        // history = Number(history) + Number(actualValue)
+        history = eval(history + operator + actualValue)
+        console.log(history + operator + actualValue)
+        return ''
+
+    } else {
+        // actualValue = Number(history) + Number(actualValue)
+        actualValue = eval(history + operator + actualValue)
+        console.log(history + operator + actualValue)
+        history = 0
+        return actualValue
+    }
+
+
+    return actualValue
+}
 const calculator = document.getElementById("calculator")
 
 document.body.addEventListener('keydown', buttonInput)
