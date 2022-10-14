@@ -65,3 +65,9 @@ p {
 .btn:hover {
     cursor: pointer;
 }
+.equal {
+    background-color: rgba(100, 94, 94, 0.2);
+}
+.equal:hover { 
+    background-color: rgba(100, 94, 94, 1)
+}

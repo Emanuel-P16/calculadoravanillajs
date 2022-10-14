@@ -31,6 +31,21 @@ const getinputfield = (key) => {
         case '0':
             keyValue = '0';
             break;
+        case '-':
+            keyValue = "-"
+            break;
+        case "+":
+            keyValue = "+"
+            break;
+        case "/":
+            keyValue = "/"
+            break;
+        case "*":
+            keyValue = "*"
+            break;
+        case "Escape":
+            keyValue="escape";
+            break;
         default:
             keyValue = ''
             break;
@@ -127,20 +142,27 @@ const generateButtonHub = (amount) => {
         btnproperty = getCalculatorValue(index)
         btn.innerHTML = btnproperty
         btn.classList.add('btn')
+        if (btnproperty === "=") {
+            btn.classList.add('equal')
+        }
         buttonDiv.appendChild(btn)
 
     }
 }
 
 const buttonInput = (e) => {
+    let actualValue = document.getElementById('input').value
     let keyValue = getinputfield(e.key)
-    if(keyValue === ''){
+    if (keyValue === '') {
         return null
     }
-    let actualValue = document.getElementById('input').value
-    if(actualValue === '0' ){
+    if (keyValue === "escape"){
+        actualValue = "0"
+        keyValue = '0'
+    }
+    if (actualValue === '0') {
         actualValue = ''
-    } 
+    }
     document.getElementById('input').setAttribute('value', actualValue + keyValue)
     document.getElementById('input').value = actualValue + keyValue
 
