@@ -145,6 +145,7 @@ const generateButtonHub = (amount) => {
         btn.innerHTML = btnproperty
         btn.classList.add('btn')
         btn.setAttribute('data-btn', btnproperty)
+        btn.onclick = buttonInput
         if (btnproperty === "=") {
             btn.classList.add('equal')
         }
@@ -154,6 +155,12 @@ const generateButtonHub = (amount) => {
 }
 
 const buttonInput = (e) => {
+    let keyValue = ''
+    if (e.key === undefined){
+        keyValue = getinputfield(e.target.dataset.btn)
+    } else {
+        keyValue = getinputfield(e.key)
+    }
     const input = document.getElementById('input').value.length
     
     if (input == 1) {
@@ -164,7 +171,6 @@ const buttonInput = (e) => {
     }
 
     let actualValue = document.getElementById('input').value
-    let keyValue = getinputfield(e.key)
     if (keyValue === '') {
         return null
     }
