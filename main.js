@@ -1,3 +1,5 @@
+let sizePx = 0
+let lengthParam = 0
 const getinputfield = (key) => {
     let keyValue = '0'
     switch (key) {
@@ -44,7 +46,7 @@ const getinputfield = (key) => {
             keyValue = "*"
             break;
         case "Escape":
-            keyValue="escape";
+            keyValue = "escape";
             break;
         default:
             keyValue = ''
@@ -142,6 +144,7 @@ const generateButtonHub = (amount) => {
         btnproperty = getCalculatorValue(index)
         btn.innerHTML = btnproperty
         btn.classList.add('btn')
+        btn.setAttribute('data-btn', btnproperty)
         if (btnproperty === "=") {
             btn.classList.add('equal')
         }
@@ -151,12 +154,21 @@ const generateButtonHub = (amount) => {
 }
 
 const buttonInput = (e) => {
+    const input = document.getElementById('input').value.length
+    
+    if (input == 1) {
+        sizePx = 50
+        lengthParam = 7
+    } else if (input === 19 ) {
+        return null
+    }
+
     let actualValue = document.getElementById('input').value
     let keyValue = getinputfield(e.key)
     if (keyValue === '') {
         return null
     }
-    if (keyValue === "escape"){
+    if (keyValue === "escape") {
         actualValue = "0"
         keyValue = '0'
     }
@@ -165,6 +177,12 @@ const buttonInput = (e) => {
     }
     document.getElementById('input').setAttribute('value', actualValue + keyValue)
     document.getElementById('input').value = actualValue + keyValue
+    if (document.getElementById('input').value.length > lengthParam) {
+        document.getElementById('input').style.fontSize = sizePx.toString() + "px"
+        sizePx = sizePx - 12
+        lengthParam = lengthParam  + 4
+
+    }
 
 }
 

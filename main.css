@@ -18,6 +18,9 @@ input[type=number] {
 p {
     color: red;
 }
+.smalltxt{
+    font-size: 10px;
+}
 #calculator {
     width: 20rem;
     background-color: var(--background-color);
